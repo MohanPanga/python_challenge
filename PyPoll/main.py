@@ -21,9 +21,13 @@ with open(csvpath,'r') as csvhandle:
         else:
             candidate_votes[indx] += 1
     
+
+print('---------------------------------------------')
 print('Election Results')
 print('---------------------------------------------')
 print(f'Total Votes: {Total_votes}')
-print(candidates)
-print(candidate_votes)
+for candidate in candidates:
+    indx1 = candidates.index(candidate)
+    print(f'{candidate} : {round(candidate_votes[indx1]/Total_votes*100,5)}% ({candidate_votes[indx1]})')
+
 
