@@ -21,13 +21,27 @@ with open(csvpath,'r') as csvhandle:
         else:
             candidate_votes[indx] += 1
     
+with open('Analysis/output.txt','w') as out_handle:
+    out_handle.write('Election Results \n')
+    out_handle.write('---------------------------------------------\n')
+    print('---------------------------------------------')
+    print('Election Results')
+    print('---------------------------------------------')
+    out_handle.write(f'Total Votes: {Total_votes}\n')
+    print(f'Total Votes: {Total_votes}')
+    print('---------------------------------')
+    for candidate in candidates:
+        indx1 = candidates.index(candidate)
+        print(f'{candidate} : {round(candidate_votes[indx1]/Total_votes*100,5)}% ({candidate_votes[indx1]})')
+        out_handle.write(f'{candidate} : {round(candidate_votes[indx1]/Total_votes*100,5)}% ({candidate_votes[indx1]})\n')
+    winner_votes = max(candidate_votes)
+    indx2 = candidate_votes.index(winner_votes)
+    winner = candidates[indx2]
+    print('---------------------------------')
+    print(f'winner: {winner}')
+    out_handle.write('---------------------------------\n')
+    out_handle.write(f'winner: {winner}')
+    print('---------------------------------')
 
-print('---------------------------------------------')
-print('Election Results')
-print('---------------------------------------------')
-print(f'Total Votes: {Total_votes}')
-for candidate in candidates:
-    indx1 = candidates.index(candidate)
-    print(f'{candidate} : {round(candidate_votes[indx1]/Total_votes*100,5)}% ({candidate_votes[indx1]})')
 
-
+    
