@@ -1,18 +1,25 @@
 import os
 import csv
 
+# path to the data file
 csvpath = os.path.join("Resources","election_data.csv")
 print(csvpath)
 
 with open(csvpath,'r') as csvhandle:
     election_data = csv.reader(csvhandle)
     header = next(election_data)
+    # initialize total votes and lists for candidates and votes received by each candidate
+    # votes received by a candidate will be captured at the same index in candidate_votes
     Total_votes = 0
     candidates =[]
     candidate_votes =[]
 
     for row in election_data:
+        # count total votes casted
         Total_votes+= 1
+        # use candidates name on the vote and find index in candidates
+        # if the name of the candidate is not in the list an error is generated and name is appended to the list
+        # along with name number of votes is append to the candidate_votes list
         try:
             indx = candidates.index(row[2])
         except ValueError:
@@ -20,7 +27,7 @@ with open(csvpath,'r') as csvhandle:
             candidate_votes.append(1)
         else:
             candidate_votes[indx] += 1
-    
+ # writing to output file and terminal   
 with open('Analysis/output.txt','w') as out_handle:
     out_handle.write('Election Results \n')
     out_handle.write('---------------------------------------------\n')
